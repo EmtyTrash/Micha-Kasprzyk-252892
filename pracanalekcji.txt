@@ -1,0 +1,104 @@
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#define SIZE 10
+
+
+FILE * fptr;
+int zapisdopliku(int *array)
+{
+    fptr = fopen("C:\\Users\\student\\Desktop\\tablica.txt", "a");
+    if (fptr == 0)
+    {
+        printf("Blad otwierania pliku!\n");
+        exit(1);
+    }
+    for (int i=0; i<SIZE; i++) {
+
+        fprintf(fptr, "%d\n", array[i]);
+    }
+    fclose(fptr);
+    return 0;
+}
+
+
+
+void printArray(int array[]){
+    for (int i = 0; i < SIZE; ++i){
+        printf("array[%d] = %d\n", i, array[i]);
+    }
+}
+
+int findminimum(int array[]){
+    int minimum = array[0];
+    for (int i = 1; i < SIZE; ++i) {
+        if (array[i] < minimum){
+            minimum=array[i];
+        }
+
+    }
+    return minimum;
+}
+int findmaximum(int array[]){
+    int maximum = array[0];
+    for (int i = 1; i < SIZE; ++i) {
+        if (array[i] > maximum){
+            maximum=array[i];
+        }
+
+    }
+    return maximum;
+}
+
+void menu(void){
+    printf("1. Enter the values into the array\n");
+    printf("2. Display the content of the array\n");
+    printf("3. Determine the minimum value\n");
+    printf("4. Determine the maximum value\n");
+    printf("5. Determine the average value\n");
+    printf("6. Zapis tablicy do pliku.\n");
+    printf("0. Exit\n");
+
+}
+
+int main() {
+    int array[SIZE] = {1, 5, -7, 11, 3, 100, 9, 15, 18, 6,};
+    int option = 0;
+    int maximum =0;
+    int minimum =0;
+    printf("Simple array\n\n");
+
+    do {
+        menu();
+        scanf("%d", &option);
+
+        switch (option) {
+            case 0:
+                break;
+            case 1:
+                printf("Entering values into the array\n\n");
+                break;
+            case 2:
+                printArray(array);
+                break;
+            case 3:
+                printf("Minimum value is: %d\n\n", findminimum(array));
+                break;
+            case 4:
+                printf("Maximum value is: %d\n\n",findmaximum(array));
+                break;
+            case 5:
+                printf("Determining the average value\n\n");
+                break;
+            case 6:
+                printf("Zapis do pliku.\n\n");
+                zapisdopliku(array);
+                break;
+            default:
+                printf("Choose the right option...\n\n");
+        }
+    } while (option!=0);
+    printf("The End\n");
+
+    return 0;
+}
