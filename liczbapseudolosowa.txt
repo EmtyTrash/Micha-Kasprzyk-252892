@@ -1,0 +1,30 @@
+#include <iostream>
+
+int main() {
+    time_t t;
+    srand(time(&t));
+    int Value = 0;
+    printf("Ten program generuje liczby pseudolosowe\n");
+
+     int randomValue = ( rand() % 20 ) ;
+
+     printf("%d\n", randomValue );
+
+printf("Zgadnij jaka liczbe wylosowalem");
+    int counter = 0;
+while (randomValue != Value)
+{
+
+    scanf("%d", &Value);
+    if (randomValue > Value)
+        printf("Nie zgadles, liczba jest za mala\n");
+    else if (randomValue < Value)
+        printf("Nie zgadles, liczba jest za duza\n");
+      counter++;
+
+}
+    printf("Zgadles za: %d razem", counter);
+
+
+    return 0;
+}
